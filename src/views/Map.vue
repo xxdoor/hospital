@@ -26,7 +26,7 @@
             client.post(uri, {url: current_uri})
                 .then(function (response) {
                     params = response.data;
-                    params.debug = true;
+                    params.debug = false;
                     params.jsApiList = ['checkJsApi', 'getLocation', 'openLocation'];
                     //微信sdk config注入
                     wx.config(params);
@@ -35,7 +35,7 @@
                             success: function (res) {
                                 start.lat = res.latitude;
                                 start.lng = res.longitude;
-
+                                alert(JSON.stringify(start));
                             }
                         })
                     });
@@ -65,6 +65,6 @@
 
     #map {
         width: 100%;
-        height: 900px;
+        height: 600px;
     }
 </style>
