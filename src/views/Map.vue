@@ -19,11 +19,11 @@
         name: "Map",
         data: function () {
             let current_uri = location.href.split('#')[0];
-            let uri = uris.sdk + '?url=' + current_uri;
+            let uri = uris.sdk;
             let params;
             let detail;
             let start = {};
-            client.get(uri)
+            client.post(uri, {url: current_uri})
                 .then(function (response) {
                     params = response.data;
                     params.debug = true;
