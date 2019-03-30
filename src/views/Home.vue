@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+      <div class="bgPics">
+          <img src="../assets/baby.jpg" id="bgImg">
+      </div>
       <div class="tarbar">
           <div class="wrapper">
               <div class="record">{{record}}</div>
@@ -68,10 +71,15 @@ export default {
 </script>
 
 <style>
-    .home {
+    .bgPics {
         height: 100%;
-        background: url("../assets/baby.jpg") no-repeat;
-        background-size: auto 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    #bgImg {
+        height: auto;
+        max-height: 100%;
     }
     .wrapper {
         background-color: #e93478;
@@ -82,11 +90,13 @@ export default {
         flex-direction: column;
         justify-content: flex-end;
         height: 100%;
+        position: fixed;
+        bottom: 70px;
+        width: 100%
     }
     .wrapper {
         display: flex;
         flex-direction: column;
-        flex-basis: 150px;
     }
     .index {
         display: grid;

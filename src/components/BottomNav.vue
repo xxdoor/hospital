@@ -52,8 +52,10 @@
 <style>
     #nav {
         color: #f48fb1;
-        height: 100%;
         width: 100%;
+        position: fixed;
+        bottom: 0;
+        height: 70px;
     }
     /* 导航栏选中时的颜色 */
     #nav .mu-bottom-item-active {

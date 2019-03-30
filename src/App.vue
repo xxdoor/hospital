@@ -28,7 +28,7 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
-        display: flex;
+        /*display: flex;*/
         flex-direction: column;
     }
     #app #nav {
@@ -36,14 +36,17 @@
         padding-left: 0;
         padding-right: 0;
     }
-    .header {
-        flex: 0;
-    }
     .content {
-        flex: 1;
-        overflow: scroll;
+        height: 100%;
     }
-    .nav {
-        flex: 0;
-    }
+    /*.header {*/
+        /*flex: 0;*/
+    /*}*/
+    /*.content {*/
+        /*flex: 1;*/
+        /*overflow: scroll;*/
+    /*}*/
+    /*.nav {*/
+        /*flex: 0;*/
+    /*}*/
 </style>
