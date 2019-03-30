@@ -13,7 +13,7 @@
     export default {
         name: "Map",
         data: function () {
-            let current_uri = window.location.href;
+            let current_uri = location.href.split('#')[0];
             let uri = uris.sdk + '?url=' + current_uri;
             let params;
             let detail;
@@ -27,7 +27,6 @@
                     wx.config(params);
                     wx.ready(function () {
                         info = "wx ready";
-                        console.log("*****wx ready");
                         wx.getLocation({
                             success: function (res) {
                                 detail = JSON.stringify(res);
@@ -36,11 +35,8 @@
                     });
                     wx.error(function (e) {
                         info = "wx error";
-                        console.log("****wx error!");
-                        console.dir(e);
                     })
-                })
-                .catch(e => console.dir(e));
+                });
             return {
                 detail: detail,
                 info: info,
