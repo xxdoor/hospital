@@ -4,7 +4,7 @@
             <bm-marker :position="center" :dragging="true" animation="BMAP_ANIMATION_BOUNCE"
                         :icon="icon">
                 <bm-label content="吕梁怡华妇产医院" :labelStyle="{color: 'deeppink', fontSize : '18px'}" :offset="{width: -35, height: 30}"/>
-                <bm-driving :start="start" :end="center" :auto-viewport="true"></bm-driving>
+                <bm-driving :end="center" :auto-viewport="true"></bm-driving>
             </bm-marker>
             <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
         </baidu-map>
@@ -18,40 +18,40 @@
     export default {
         name: "Map",
         data: function () {
-            let current_uri = location.href.split('#')[0];
-            let uri = uris.sdk;
-            let params;
-            let detail;
-            let start = {};
-            client.post(uri, {url: current_uri})
-                .then(function (response) {
-                    params = response.data;
-                    params.debug = false;
-                    params.jsApiList = ['checkJsApi', 'getLocation', 'openLocation'];
-                    //微信sdk config注入
-                    wx.config(params);
-                    wx.ready(function () {
-                        wx.getLocation({
-                            success: function (res) {
-                                start.lat = res.latitude;
-                                start.lng = res.longitude;
-                                alert(JSON.stringify(start));
-                            }
-                        })
-                    });
-                    wx.error(function () {
-                    })
-                });
+            //使用js sdk获取当前位置
+            // let current_uri = location.href.split('#')[0];
+            // let uri = uris.sdk;
+            // let params;
+            // let detail;
+            // let start = {};
+            // client.post(uri, {url: current_uri})
+            //     .then(function (response) {
+            //         params = response.data;
+            //         params.debug = false;
+            //         params.jsApiList = ['checkJsApi', 'getLocation', 'openLocation'];
+            //         //微信sdk config注入
+            //         wx.config(params);
+            //         wx.ready(function () {
+            //             wx.getLocation({
+            //                 success: function (res) {
+            //                     start.lat = res.latitude;
+            //                     start.lng = res.longitude;
+            //                     alert(JSON.stringify(start));
+            //                 }
+            //             })
+            //         });
+            //         wx.error(function () {
+            //         })
+            //     });
 
             let center = {
                 lng: 111.13491,
                 lat: 37.511818
             };
             return {
-                detail: detail,
+                // detail: detail,
                 center: center,
                 zoom: 20,
-                start: start,
                 icon: {
                     url: require('../assets/s_hos.png'),
                     size: {width: 30, height: 30},
@@ -65,6 +65,6 @@
 
     #map {
         width: 100%;
-        height: 600px;
+        height: 500px;
     }
 </style>
