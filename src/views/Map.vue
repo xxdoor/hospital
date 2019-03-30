@@ -1,8 +1,13 @@
 <template>
     <div class="map">
-        <div>map</div>
-        <div>{{info}}</div>
-        <div>{{detail}}</div>
+        <baidu-map id="map" :center="center" :zoom="zoom">
+            <bm-marker :position="center" :dragging="true" animation="BMAP_ANIMATION_BOUNCE"
+                        :icon="icon">
+                <bm-label content="吕梁怡华妇产医院" :labelStyle="{color: 'deeppink', fontSize : '18px'}" :offset="{width: -35, height: 30}"/>
+                <bm-driving :start="start" :end="center" :auto-viewport="true"></bm-driving>
+            </bm-marker>
+            <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
+        </baidu-map>
     </div>
 </template>
 
@@ -17,7 +22,7 @@
             let uri = uris.sdk + '?url=' + current_uri;
             let params;
             let detail;
-            let info;
+            let start = {};
             client.get(uri)
                 .then(function (response) {
                     params = response.data;
@@ -26,20 +31,31 @@
                     //微信sdk config注入
                     wx.config(params);
                     wx.ready(function () {
-                        info = "wx ready";
                         wx.getLocation({
                             success: function (res) {
-                                detail = JSON.stringify(res);
+                                start.lat = res.latitude;
+                                start.lng = res.longitude;
+
                             }
                         })
                     });
-                    wx.error(function (e) {
-                        info = "wx error";
+                    wx.error(function () {
                     })
                 });
+
+            let center = {
+                lng: 111.13491,
+                lat: 37.511818
+            };
             return {
                 detail: detail,
-                info: info,
+                center: center,
+                zoom: 20,
+                start: start,
+                icon: {
+                    url: require('../assets/s_hos.png'),
+                    size: {width: 30, height: 30},
+                }
             }
         }
     }
@@ -47,4 +63,8 @@
 
 <style scoped>
 
+    #map {
+        width: 100%;
+        height: 900px;
+    }
 </style>
