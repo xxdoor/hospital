@@ -1,31 +1,49 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="app">
+        <!--<div class="header">-->
+            <!--<div>header</div>-->
+        <!--</div>-->
+        <div class="content">
+            <router-view></router-view>
+        </div>
+        <div class="nav">
+            <BottomNav id="nav"></BottomNav>
+        </div>
     </div>
-    <router-view/>
-  </div>
 </template>
 
+<script>
+    import BottomNav from "./components/BottomNav";
+    export default {
+        components: {BottomNav}
+    }
+</script>
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+    html, body, #app {
+        height: 100%;
+    }
+    #app {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+    }
+    #app #nav {
+        margin: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .header {
+        flex: 0;
+    }
+    .content {
+        flex: 1;
+        overflow: scroll;
+    }
+    .nav {
+        flex: 0;
+    }
 </style>
