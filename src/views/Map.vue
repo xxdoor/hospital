@@ -28,11 +28,8 @@
 </template>
 
 <script>
-    import wx from 'weixin-js-sdk';
-    const client = require('../src/utils').client;
-    const uris = require('../src/utils').uri;
     export default {
-        name: "Map",
+        name: "map",
         data: function () {
             //使用js sdk获取当前位置
             // let current_uri = location.href.split('#')[0];
@@ -183,7 +180,7 @@
         height: 20%;
         width: 100%;
         background-color: white;
-        opacity: 0.5;
+        opacity: 0.7;
     }
 
     .search, .check {

@@ -45,6 +45,13 @@
                 }
                 this.currentTab = current.id;
             },
+        },
+        watch: {
+            $route(to, from) {
+                if (to.name === 'home' || to.name === 'map') {
+                    this.currentTab = to.name;
+                }
+            }
         }
     }
 </script>

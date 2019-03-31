@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import About from './views/About'
 import Detail from './components/Detail'
-import Map from './views/Map'
+import map from './views/Map'
 
 Vue.use(Router);
 
@@ -28,7 +28,7 @@ export default new Router({
       {
           path: '/map',
           name: 'map',
-          component: Map
+          component: map
       }
   ]
 })
