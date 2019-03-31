@@ -10,10 +10,10 @@
             <div class="search">
                 <mu-form :model="form" label-position="left" label-width="100">
                     <mu-form-item label="出发">
-                        <mu-text-field v-model="form.start"></mu-text-field>
+                        <mu-text-field v-model="form.start" @change="reset"></mu-text-field>
                     </mu-form-item>
                     <mu-form-item label="到达">
-                        <mu-text-field v-model="form.end"></mu-text-field>
+                        <mu-text-field v-model="form.end" @change="reset"></mu-text-field>
                     </mu-form-item>
                 </mu-form>
             </div>
@@ -162,6 +162,9 @@
                     //     driving.search(current_point, center_point);
                     // }
                 }
+            },
+            reset: function () {
+                window.scroll(0, 0);
             }
         }
     }
