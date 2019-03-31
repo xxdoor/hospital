@@ -81,9 +81,9 @@
         },
         methods: {
             handler: function (obj) {
-                console.log("in map handler..");
                 let BMap = obj.BMap;
                 let map = obj.map;
+                let self = this;
                 //将两个实例赋值给data
                 this.map = map;
                 this.BMap = BMap;
@@ -112,20 +112,20 @@
                         let distance = map.getDistance(current_point, center_point);
 
                         if (distance <= 500) {
-                            console.log("步行");
                             let walking = new BMap.WalkingRoute(map, {
                                 renderOptions: {map: map, autoViewport: true}
                             });
                             walking.search(current_point, center_point);
+                            self.$toast.info('现在您到医院只有不到500米呢\n建议顺路去看看哟');
                         } else {
-                            console.log("开车");
                             let driving = new BMap.DrivingRoute(map, {
                                 renderOptions: {map: map, autoViewport: true}
                             });
                             driving.search(current_point, center_point);
+                            self.$toast.info('快来考察一下呢');
                         }
                     } else {
-                        alert("没有定位到您的位置呢> <")
+                        this.$toast.error("没有定位到您的位置呢> <")
                     }
                 }, {enableHighAccuracy: true})
 
@@ -133,18 +133,18 @@
             searchMap: function () {
                 // 检查起点和终点是否改变
                 if (this.form.start === '当前位置' && this.form.end === '吕梁怡华妇产医院') {
-                    alert('位置没有改变，不搜索');
+                    this.$toast.success('已经搜索完成啦');
                 } else {
                     let start = this.form.start;
                     let end = this.form.end;
                     let BMap = this.BMap;
                     let map = this.map;
 
-                    console.log("开车");
                     let driving = new BMap.DrivingRoute(map, {
                         renderOptions: {map: map, autoViewport: true}
                     });
                     driving.search(start, end);
+                    this.$toast.success('搜索完毕');
                     //TODO 如何计算距离
                     // let distance = this.map.getDistance(start, end);
                     //

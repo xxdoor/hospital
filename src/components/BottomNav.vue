@@ -50,6 +50,8 @@
             $route(to, from) {
                 if (to.name === 'home' || to.name === 'map') {
                     this.currentTab = to.name;
+                    console.log("-----当前tab");
+                    console.dir(to);
                 }
             }
         }

@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <mu-card raised style="width: 100%; margin: 0 auto; height:100%;">
-            <mu-card-header class="text" :title="title" :sub-title="subTitle">
+            <mu-card-header class="headText" :title="title" :sub-title="subTitle">
             </mu-card-header>
             <mu-carousel class="pics" hide-controls interval="3000">
                 <mu-carousel-item v-for="item in imgs">
@@ -51,8 +51,20 @@
         text-align: left;
     }
 
-    .text {
-        margin: 0 15px;
+    .text, .headText {
+        padding: 20px;
+    }
+    .headText {
+        background-color: #e93478;
+        opacity: 0.7;
+    }
+
+    .mu-card-header-title .mu-card-title{
+        color: white;
+    }
+
+    .mu-card-header-title .mu-card-sub-title {
+        color: white;
     }
 
     .pics {

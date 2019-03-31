@@ -12,6 +12,7 @@
     "axios": "^0.18.0",
     "fs": "0.0.1-security",
     "muse-ui": "^3.0.2",
+    "muse-ui-toast": "^0.3.0",
     "path": "^0.12.7",
     "restify": "^8.2.0",
     "vue": "^2.5.21",
