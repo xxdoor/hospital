@@ -28,7 +28,7 @@
         name: "BottomNav",
         data: function () {
             let currentTab = "home";
-            let telInfo = "tel:18035837770";
+            let telInfo = "tel:03588268999";
             return {
                 currentTab: currentTab,
                 telInfo: telInfo,
