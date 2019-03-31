@@ -4,7 +4,7 @@
             <bm-marker :position="center" :dragging="true" animation="BMAP_ANIMATION_BOUNCE"
                         :icon="icon">
             </bm-marker>
-            <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
+            <bm-geolocation anchor="BMAP_ANCHOR_TOP_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
         </baidu-map>
         <div class="tool">
             <div class="search">
