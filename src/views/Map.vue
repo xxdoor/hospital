@@ -113,7 +113,7 @@
                 content += "<span><strong>电话：</strong>(0358)8268999</span><br>";
 
                 let opt = { width: 300 };
-                let wrapper = "<a href='http://api.map.baidu.com/geocoder?address=吕梁怡华妇产医院&output=html' target='_blank'>" + content + "</a>"
+                let wrapper = "<a href='https://map.baidu.com/mobile/webapp/search/search/qt=s&wd=吕梁怡华妇产医院/?third_party=uri_api&vt=map' target='_blank'>" + content + "</a>"
                 let infoWindow = new BMap.InfoWindow(wrapper, opt);
                 marker.openInfoWindow(infoWindow);
                 marker.addEventListener('click', function () {
