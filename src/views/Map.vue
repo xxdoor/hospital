@@ -80,6 +80,7 @@
             handler: function (obj) {
                 let BMap = obj.BMap;
                 let map = obj.map;
+                let self = this;
                 //将两个实例赋值给data
                 this.map = map;
                 this.BMap = BMap;
@@ -94,12 +95,17 @@
                 label.setStyle({
                     color: 'hotpink',
                     fontSize: '15px',
-                    height: '35px',
-                    padding: '10px 5px'
+                    height: '25px',
+                    padding: '5px 5px',
+                    border: 'none',
+                    backgroundColor: 'none',
+                    fontWeight: 'bold'
                 });
                 map.addOverlay(label);
 
-                let marker = new BMap.Marker(center_point);
+                let marker = new BMap.Marker(center_point, {
+                    icon: new BMap.Icon(self.icon.url, self.icon.size)
+                });
                 map.addOverlay(marker);
                 //图像内容
                 let content = "<b>吕梁怡华妇产医院</b><br>";
@@ -112,34 +118,34 @@
                 marker.openInfoWindow(infoWindow);
                 marker.addEventListener('click', function () {
                     marker.openInfoWindow(infoWindow);
-                })
+                });
 
                 // 获取当前位置
-                // let current_point;
-                // let geolocation = new BMap.Geolocation();
-                // geolocation.getCurrentPosition(function (r) {
-                //     if (this.getStatus() === 0) {
-                //         current_point = r.point;
-                //         // 计算当前位置和医院的距离
-                //         let distance = map.getDistance(current_point, center_point);
-                //
-                //         if (distance <= 500) {
-                //             let walking = new BMap.WalkingRoute(map, {
-                //                 renderOptions: {map: map, autoViewport: true}
-                //             });
-                //             walking.search(current_point, center_point);
-                //             self.$toast.info('现在您到医院只有不到500米呢\n建议顺路去看看哟');
-                //         } else {
-                //             let driving = new BMap.DrivingRoute(map, {
-                //                 renderOptions: {map: map, autoViewport: true}
-                //             });
-                //             driving.search(current_point, center_point);
-                //             self.$toast.info('快来考察一下呢');
-                //         }
-                //     } else {
-                //         this.$toast.error("没有定位到您的位置呢> <")
-                //     }
-                // }, {enableHighAccuracy: true})
+                let current_point;
+                let geolocation = new BMap.Geolocation();
+                geolocation.getCurrentPosition(function (r) {
+                    if (this.getStatus() === 0) {
+                        current_point = r.point;
+                        // 计算当前位置和医院的距离
+                        let distance = map.getDistance(current_point, center_point);
+
+                        if (distance <= 500) {
+                            // let walking = new BMap.WalkingRoute(map, {
+                            //     renderOptions: {map: map, autoViewport: true}
+                            // });
+                            // walking.search(current_point, center_point);
+                            self.$toast.info('现在您到医院只有不到500米呢\n建议顺路去看看哟');
+                        } else {
+                            // let driving = new BMap.DrivingRoute(map, {
+                            //     renderOptions: {map: map, autoViewport: true}
+                            // });
+                            // driving.search(current_point, center_point);
+                            self.$toast.info('请到院考察一下哟');
+                        }
+                    } else {
+                        this.$toast.error("没有定位到您的位置呢> <")
+                    }
+                })
 
             },
             // searchMap: function () {

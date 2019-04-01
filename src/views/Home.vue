@@ -39,6 +39,22 @@
                           月子中心
                       </mu-button>
                   </div>
+                  <div class="index-item-left">
+                      <mu-button color="pink" round  id="expert" @click="handle($event)">
+                          <mu-avatar color="white" :size="26" class="logo">
+                              <img src="../assets/expert.png">
+                          </mu-avatar>
+                          专家团队
+                      </mu-button>
+                  </div>
+                  <div class="index-item">
+                      <mu-button color="pink" round  id="equipment" @click="handle($event)">
+                          <mu-avatar :size="26" class="logo" color="white">
+                              <img src="../assets/equipment.png">
+                          </mu-avatar>
+                          医疗设备
+                      </mu-button>
+                  </div>
               </div>
           </div>
       </div>

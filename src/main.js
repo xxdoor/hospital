@@ -11,8 +11,8 @@ import './theme/my-theme'
 
 let toastOption = {
     position: 'top-start',
-    time: 2000,
-    close: false
+    time: 5000,
+    close: true
 };
 
 Vue.use(MuseUI);
