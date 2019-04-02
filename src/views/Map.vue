@@ -2,6 +2,12 @@
     <div class="map">
         <baidu-map id="map" :center="center" :zoom="zoom" @ready="handler">
             <bm-geolocation anchor="BMAP_ANCHOR_TOP_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
+            <bm-control>
+                <mu-button fab small color="primary" @click.native="locateHospital" class="recoveryHos">
+                    <mu-icon value="local_hospital"></mu-icon>
+                </mu-button>
+                <!--<button  anchor="BMAP_ANCHOR_BOTTOM_LEFT">还原</button>-->
+            </bm-control>
         </baidu-map>
         <!--<div class="tool">-->
             <!--<div class="search">-->
@@ -73,7 +79,8 @@
                 },
                 form: form,
                 map: null,
-                BMap: null
+                BMap: null,
+                centerPoint: null
             }
         },
         methods: {
@@ -85,7 +92,7 @@
                 this.map = map;
                 this.BMap = BMap;
                 let center_point = new BMap.Point(this.center.lng, this.center.lat);
-
+                this.centetPoint = center_point;
                 // 添加文字标签
                 let label_position = {
                     position: center_point,
@@ -134,13 +141,19 @@
                             //     renderOptions: {map: map, autoViewport: true}
                             // });
                             // walking.search(current_point, center_point);
-                            self.$toast.info('现在您到医院只有不到500米呢\n建议顺路去看看哟');
+                            self.$toast.message({
+                                message: '现在您到医院只有不到500米呢~ 建议顺路去看看哟',
+                                color: '#f48fb1'
+                            });
                         } else {
                             // let driving = new BMap.DrivingRoute(map, {
                             //     renderOptions: {map: map, autoViewport: true}
                             // });
                             // driving.search(current_point, center_point);
-                            self.$toast.info('请到院考察一下哟');
+                            self.$toast.message({
+                                message: '请到院考察呢~',
+                                color: '#f48fb1'
+                            });
                         }
                     } else {
                         this.$toast.error("没有定位到您的位置呢> <")
@@ -184,6 +197,10 @@
             // reset: function () {
             //     window.scroll(0, 0);
             // },
+            locateHospital: function () {
+                this.map.centerAndZoom(this.centetPoint, this.zoom);
+                console.dir(this.map);
+            }
         }
     }
 </script>
@@ -218,4 +235,9 @@
         width: 90%;
     }
 
+    .recoveryHos {
+        position: fixed;
+        bottom: 80px;
+        right: 10px;
+    }
 </style>
