@@ -6,27 +6,8 @@
                 <mu-button fab small color="primary" @click.native="locateHospital" class="recoveryHos">
                     <mu-icon value="local_hospital"></mu-icon>
                 </mu-button>
-                <!--<button  anchor="BMAP_ANCHOR_BOTTOM_LEFT">还原</button>-->
             </bm-control>
         </baidu-map>
-        <!--<div class="tool">-->
-            <!--<div class="search">-->
-                <!--<mu-form :model="form" label-position="left" label-width="100">-->
-                    <!--<mu-form-item label="出发">-->
-                        <!--<mu-text-field v-model="form.start" @change="reset"></mu-text-field>-->
-                    <!--</mu-form-item>-->
-                    <!--<mu-form-item label="到达">-->
-                        <!--<mu-text-field v-model="form.end" @change="reset"></mu-text-field>-->
-                    <!--</mu-form-item>-->
-                <!--</mu-form>-->
-            <!--</div>-->
-            <!--<div class="check">-->
-                <!--<mu-button icon color="deeppink" @click="searchMap">-->
-                    <!--<mu-icon value="search" size="36"></mu-icon>-->
-                <!--</mu-button>-->
-            <!--</div>-->
-        <!--</div>-->
-
     </div>
 </template>
 
@@ -127,39 +108,10 @@
                     marker.openInfoWindow(infoWindow);
                 });
 
-                // 获取当前位置
-                let current_point;
-                let geolocation = new BMap.Geolocation();
-                geolocation.getCurrentPosition(function (r) {
-                    if (this.getStatus() === 0) {
-                        current_point = r.point;
-                        // 计算当前位置和医院的距离
-                        let distance = map.getDistance(current_point, center_point);
-
-                        if (distance <= 500) {
-                            // let walking = new BMap.WalkingRoute(map, {
-                            //     renderOptions: {map: map, autoViewport: true}
-                            // });
-                            // walking.search(current_point, center_point);
-                            self.$toast.message({
-                                message: '现在您到医院只有不到500米呢~ 建议顺路去看看哟',
-                                color: '#f48fb1'
-                            });
-                        } else {
-                            // let driving = new BMap.DrivingRoute(map, {
-                            //     renderOptions: {map: map, autoViewport: true}
-                            // });
-                            // driving.search(current_point, center_point);
-                            self.$toast.message({
-                                message: '请到院考察呢~',
-                                color: '#f48fb1'
-                            });
-                        }
-                    } else {
-                        this.$toast.error("没有定位到您的位置呢> <")
-                    }
-                })
-
+                self.$toast.message({
+                    message: '请到院考察呢~',
+                    color: '#f48fb1'
+                });
             },
             // searchMap: function () {
             //     // 检查起点和终点是否改变

@@ -3,8 +3,8 @@
         <mu-card raised style="width: 100%; margin: 0 auto; height:100%;">
             <mu-card-header class="headText" :title="title" :sub-title="subTitle">
             </mu-card-header>
-            <mu-carousel class="pics" hide-controls interval="3000">
-                <mu-carousel-item v-for="item in imgs">
+            <mu-carousel class="pics" interval="20000" @change="imgChange">
+                <mu-carousel-item v-for="item in images">
                     <img :src="item">
                 </mu-carousel-item>
             </mu-carousel>
@@ -23,23 +23,52 @@
         name: "Detail",
         props: ["id"],
         data: function () {
+            let self = this;
             let url = urls.detail + this.id;
             client.get(url)
-                .then(res => console.dir(res))
+                .then(res => {
+                    let data = res.data;
+                    self.title = data.title;
+                    self.subTitle = data.subTitle;
+                    self.content = data.content;
+                    for (let item of self.content) {
+                        self.images.push(item.url);
+                    }
+                })
                 .catch(err => console.dir(err));
             let data = {
-                title: "标题",
-                subTitle: "医院简介副标题",
-                textTitle: "正文标题",
-                textSubTitle: "正文副标题",
-                text: "正文正文正文" +
-                    "正文正文正文" +
-                    "正文正文正文",
-                imgs: [require("../assets/baby.jpg"), require("../assets/baby2.jpg")]
+                title: "",
+                subTitle: "",
+                images: [],
+                content: "",
+                current_active: 0,
             };
             return data;
         },
         methods: {
+            imgChange: function (index) {
+                this.current_active = index;
+            }
+        },
+        computed: {
+            textTitle: function () {
+                if (this.content) {
+                    return this.content[this.current_active].title;
+                }
+                return "";
+            },
+            textSubTitle: function () {
+                if (this.content) {
+                    return this.content[this.current_active].subTitle;
+                }
+                return "";
+            },
+            text: function () {
+                if (this.content) {
+                    return this.content[this.current_active].text;
+                }
+                return "";
+            }
         }
     }
 </script>
